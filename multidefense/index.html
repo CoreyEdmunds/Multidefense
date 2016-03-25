@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<!--
+ * Multiplayer Tower Defense Demo Client
+ * Copyright (C) 2011, Corey Edmunds
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ -->
+
+<html>
+ 	<head>
+		<title>MultiDefense Test</title>
+		<script type="text/javascript" src="MultiDefense.js"></script>
+		<script type="text/javascript" src="Utilities.js"></script>
+		<script type="text/javascript" src="BoardModel.js"></script>
+		<script type="text/javascript" src="BoardView.js"></script>
+		<script type="text/javascript" src="Model.js"></script>
+		<script type="text/javascript" src="View.js"></script>
+		<script type="text/javascript" src="MultiDefenseController.js"></script>		
+	</head>
+ 	<body>
+ 		<div>
+			<table border="0" style="border-collapse: collapse;margin-left: auto;margin-right: auto;">
+	 			<tr>
+	 				<td style="width:300px;">
+						<fieldset style="">
+							<legend>Opponent</legend>
+							<canvas id="MultiDefense.OpponentCanvas" width="300" height="300">
+								Your browser does not support the HTML canvas element.
+							</canvas>
+							<br/>
+							<div align="center">Health: <span id="MultiDefense.OpponentHealthLabel">100</span>%</div>
+				  		</fieldset>
+			  		</td><td style="width:300px;">
+				   	<fieldset style="">
+				   		<legend>Player</legend>
+				  			<canvas id="MultiDefense.PlayerCanvas" width="300" height="300">
+				    			Your browser does not support the HTML canvas element.
+				  			</canvas>  
+				  			<br/>
+				  			<div align="center">Health: <span id="MultiDefense.PlayerHealthLabel">100</span>%</div>
+				  		</fieldset>
+			  		</td>
+			  		<td style="width:275px;" valign="top" rowspan="3">
+						<fieldset style="padding-bottom:auto">
+							<legend>Controls</legend>
+							<table border="0">
+								<tr>
+									<td width="0%">Next&nbsp;Wave&nbsp;In:</td><td id="MultiDefense.TimeRemaining" align="left" style="width:20px;">0</td>
+									<td width="100%" align="right"><button type="button" id="MultiDefense.DoneButton">Ready</button></td>
+								</tr>
+								<tr>
+									<td>Resources:</td><td id="MultiDefense.Resources" align="left" colspan="2">0</td>
+								</tr>
+							</table>
+							<fieldset>
+								<legend>Build</legend>
+								<button type="button" id="MultiDefense.GatlingButton" style="width:180px;text-align:left">
+									<img src="gatling.png" style="padding:0;margin:0;spacing:0;vertical-align:middle;"/>
+									<span style="vertical-align:middle;">Gatling&nbsp;Gun</span>
+								</button>
+								<br/>
+								<button type="button" id="MultiDefense.LaserButton" style="width:180px;text-align:left">
+									<img src="laser.png" style="padding:0;margin:0;spacing:0;vertical-align:middle;"/>
+									<span style="vertical-align:middle;">Laser&nbsp;Turret</span>
+								</button>
+								<br/>
+								<button type="button" id="MultiDefense.SamButton" style="width:180px;text-align:left">
+									<img src="sam.png" style="padding:0;margin:0;spacing:0;vertical-align:middle;"/>
+									<span style="vertical-align:middle;">SAM&nbsp;Launcher</span>
+								</button>
+								<br/>
+								<button type="button" id="MultiDefense.ShockwaveButton" style="width:180px;text-align:left">
+									<img src="shock.png" style="padding:0;margin:0;spacing:0;vertical-align:middle;"/>
+									<span style="vertical-align:middle;">Shock&nbsp;Tower</span>
+								</button>
+							</fieldset>	
+							<fieldset>
+								<legend>Selected Tower</legend>
+								<table>
+									<tr>
+										<td>Type:</td><td id="MultiDefense.TowerTypeLabel"></td>
+									</tr>
+									<tr>
+										<td>Level:</td><td id="MultiDefense.TowerLevelLabel"></td>
+									</tr>
+									<tr>
+										<td>Damage:</td><td id="MultiDefense.TowerDamageLabel"></td>
+									</tr>
+									<tr>
+										<td>Cost:</td><td id="MultiDefense.TowerCostLabel"></td>
+									</tr>
+									<tr>
+										<td colspan="2" id="MultiDefense.TowerNoteLabel"></td>
+									</tr>
+								</table>
+								<button type="button" id="MultiDefense.UpgradeButton">Upgrade, Price: <span id="MultiDefense.TowerUpgradeCostLabel"></span></button><br/>
+								<button type="button" id="MultiDefense.SellButton">Sell, Returns: <span id="MultiDefense.TowerSellCostLabel"></span></button>
+							</fieldset>
+							<fieldset>
+								<legend>Tips</legend>
+								<div id="MultiDefense.ToolTipLabel" style="height:170px"></div>
+							</fieldset>
+						</fieldset>	
+			  		</td>
+		  		</tr>
+		  		<tr>
+		  			<td colspan="2">
+						<fieldset style="">
+							<legend>Chat</legend>
+							<form id="MultiDefense.ChatForm">
+								<textarea id="MultiDefense.ChatArea" style="width:100%;height:210px" readonly>Hello</textarea>
+								<input id="MultiDefense.ChatInput" type="text" style="float:left;width:87%"/>
+								<button id="MultiDefense.ChatSendButton" type="button" style="float:right;width=10%">Send</button>
+							</form>
+						</fieldset>
+					</td>  
+				</tr>
+			</table>		
+		</div>
+		<script type="text/javascript">	
+  			window.multiDefense = new MultiDefense.MultiDefenseController();
+  		</script>
+ </body>
+</html>
